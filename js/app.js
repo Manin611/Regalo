@@ -261,9 +261,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   function defaultReasons(){
     return [
-      { id: 'r1', text: 'Tu risa me cambia el día.', likes: 0 },
-      { id: 'r2', text: 'Tu paciencia cuando soy torpe.', likes: 0 },
-      { id: 'r3', text: 'Cómo me miras sin decir nada.', likes: 0 }
+      { id: 'r1', text: 'Razon1.', likes: 0 },
+      { id: 'r2', text: 'Razon2.', likes: 0 },
+      { id: 'r3', text: 'Razon3.', likes: 0 }
     ];
   }
   function saveReasons(list){ localStorage.setItem(reasonsKey, JSON.stringify(list)); }
