@@ -245,31 +245,48 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // --- Muro de razones: datos, render y persistencia ---
   const reasonsKey = 'regalo-razones';
+  const REASONS_VERSION = 1; // incrementar si cambias las razones por defecto
   const reasonForm = document.getElementById('reasonForm');
   const reasonText = document.getElementById('reasonText');
   const reasonsContainer = document.getElementById('reasonsContainer');
 
-  // carga inicial (si hay en localStorage)
+  // carga inicial (si hay en localStorage) — ahora usa versionado
   function loadReasons() {
     try {
       const raw = localStorage.getItem(reasonsKey);
       if (!raw) return defaultReasons();
       const parsed = JSON.parse(raw);
-      if (!Array.isArray(parsed)) return defaultReasons();
-      return parsed;
-    } catch { return defaultReasons(); }
+      // compatibilidad: si almacenado tiene {version, items}
+      if (parsed && parsed.version === REASONS_VERSION && Array.isArray(parsed.items)) {
+        return parsed.items;
+      }
+      // si es un array antiguo (sin versión) y no está vacío, úsalo, si no, usa defaults
+      if (Array.isArray(parsed) && parsed.length) return parsed;
+      return defaultReasons();
+    } catch {
+      return defaultReasons();
+    }
   }
+
+  function saveReasons(list){
+    // guardamos con versión para futuras actualizaciones
+    try {
+      localStorage.setItem(reasonsKey, JSON.stringify({ version: REASONS_VERSION, items: list }));
+    } catch {
+      // fallback: intentar guardar solo el array
+      try { localStorage.setItem(reasonsKey, JSON.stringify(list)); } catch {}
+    }
+  }
+
   function defaultReasons(){
     return [
-      { id: 'r1', text: 'Cuando algo me sale bien, eres la primera persona que quiero contarle..', likes: 1 },
+      { id: 'r1', text: 'Cuando algo me sale bien, eres la primera persona que quiero contarle.', likes: 1 },
       { id: 'r2', text: 'Porque me importas más de lo que sé explicar.', likes: 1 },
       { id: 'r3', text: 'Porque mi mente te busca cuando se cansa.', likes: 1 },
       { id: 'r4', text: 'Porque eres tú y eso basta.', likes: 1 },
-            { id: 'r5', text: 'Porque eres tú y eso basta.', likes: 1 },
-      { id: 'r6', text: 'Porque me haces querer ser mejor cada día.', likes: 1 }
+      { id: 'r5', text: 'Porque me haces querer ser mejor cada día.', likes: 1 }
     ];
   }
-  function saveReasons(list){ localStorage.setItem(reasonsKey, JSON.stringify(list)); }
 
   let reasons = loadReasons();
 
