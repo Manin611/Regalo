@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Para ti ❤️</title>
+
+  <!-- Tipografías -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <h1 class="brand">Para ti <span class="emoji">❤️</span></h1>
+      <nav aria-label="Navegación principal">
+        <a href="#bienvenida">Inicio</a>
+        <a href="#cartas">Cartas</a>
+        <a href="#razones">Razones</a>
+        <a href="#antidia">Anti-días</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="bienvenida" class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-card">
+          <h2>Hola, mi persona favorita</h2>
+          <p>Esto lo hice pensando en ti un pequeño refugio con palabras, pequeños regalos y notas que te abracen.</p>
+          <div class="hero-actions">
+            <button id="favoriteBtn" class="btn">Guardar como favorito</button>
+            <a href="#cartas" class="btn ghost">Ver cartas</a>
+          </div>
+        </div>
+        <figure class="hero-figure" aria-hidden="true">
+          <div class="photo-frame">
+            <img src="IMG_20251230_011108_682.jpg" alt="Foto principal — Nosotros" onerror="this.style.opacity='.35'">
+            <div class="sparkles" aria-hidden="true"></div>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- CARTAS DE CARIÑO -->
+    <section id="cartas" class="section">
+      <div class="wrap">
+        <h3>Cartas de cariño</h3>
+        <p class="lead">Pequeñas notas que puedes abrir, guardar o mezclar. Cada carta contiene una frase pensada para
+          levantarte el ánimo.</p>
+
+        <div class="cards-controls" aria-hidden="false">
+          <button id="shuffleBtn" class="btn ghost">Mezclar cartas</button>
+          <button id="showAllBtn" class="btn ghost">Mostrar todas</button>
+          <form id="addForm" class="add-form" aria-label="Añadir carta">
+            <input id="newText" type="text" placeholder="Añadir una carta" />
+            <button type="submit" class="btn">Añadir</button>
+          </form>
+        </div>
+
+        <div id="cardsContainer" class="cards-grid" aria-live="polite"></div>
+
+        <p class="hint">Haz clic en una carta para abrirla.</p>
+      </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN: MURO DE RAZONES -->
+    <section id="razones" class="section soft">
+      <div class="wrap">
+        <h3>Muro de razones</h3>
+        <p class="lead">Pequeñas razones por las que pienso en ti.</p>
+
+        <form id="reasonForm" class="add-form" aria-label="Añadir razón">
+          <input id="reasonText" type="text" placeholder="Escribe una razón" />
+          <button type="submit" class="btn">Añadir</button>
+        </form>
+
+        <div id="reasonsContainer" class="reasons-grid" aria-live="polite" style="margin-top:18px;"></div>
+
+        <p class="hint">♥</p>
+      </div>
+    </section>
+
+    <section id="antidia" class="section hero-soft">
+      <div class="wrap card-centered">
+        <h3>Botón anti-días malos 💗</h3>
+        <p>Si el día pesa, pulsa y recibe un abrazo en palabras.</p>
+        <div class="anti">
+          <button id="antiButton" class="btn large" aria-pressed="false" aria-controls="mensaje">Dame un abrazo</button>
+          <div id="mensaje" class="mensaje" role="status" aria-live="polite"></div>
+        </div>
+        <small class="note">💗</small>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>Hecho con cariño.</p>
+    </div>
+  </footer>
+
+  <!-- modal y canvas se mantienen (confetti sigue activo) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="modal-close" aria-label="Cerrar">✕</button>
+    <img id="modalImg" alt="">
+    <p id="modalCaption"></p>
+  </div>
+
+  <canvas id="confetti"></canvas>
+
+  <script src="js/app.js" defer></script>
+</body>
+
+</html>
