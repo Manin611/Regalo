@@ -284,7 +284,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       { id: 'r2', text: 'Porque me importas más de lo que sé explicar.', likes: 1 },
       { id: 'r3', text: 'Porque mi mente te busca cuando se cansa.', likes: 1 },
       { id: 'r4', text: 'Porque eres tú y eso basta.', likes: 1 },
-      { id: 'r5', text: 'Porque me haces querer ser mejor cada día.', likes: 1 }
+      { id: 'r5', text: 'Porque me haces querer ser mejor cada día.', likes: 1 },
+      { id: 'r6', text: 'Porque te quiero más de lo que digo.', likes: 1 }
     ];
   }
 
