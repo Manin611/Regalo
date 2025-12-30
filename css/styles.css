@@ -110,6 +110,187 @@ body{
 .reason-actions{display:flex;gap:8px;align-items:center}
 .icon-btn.small{padding:6px 8px;border-radius:10px;font-size:0.95rem}
 
+/* --- Ajustes: Muro de razones más grande y centrado --- */
+#reasonsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px; /* altura mínima para que la tarjeta respire */
+  padding: 20px;
+}
+
+/* Si usas .reasons-grid en otros lugares, mantener compatibilidad */
+.reasons-grid { display: block; }
+
+/* Tarjeta grande y legible */
+.reason-card {
+  width: 100%;
+  max-width: 920px;   /* tarjeta más ancha en pantallas grandes */
+  min-height: 260px;  /* más espacio vertical */
+  padding: 28px 32px;
+  border-radius: 16px;
+  box-shadow: 0 28px 70px rgba(18,18,18,0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  font-size: 1.05rem; /* base */
+}
+
+/* Texto de la razón más grande y cómodo de leer */
+.reason-text {
+  font-size: 1.35rem;
+  line-height: 1.5;
+  color: #222;
+  letter-spacing: -0.2px;
+}
+
+/* Meta y botones más visibles */
+.reason-meta { margin-top: 6px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.reason-likes { font-size:1.05rem; }
+.reason-actions .icon-btn.small { padding:8px 10px; font-size:0.98rem; }
+
+/* Indicador de posición más discreto pero legible */
+#reasonsContainer .reason-card > div[style] { font-size:0.95rem; color:var(--muted); }
+
+/* Responsive: reducir tamaño en pantallas pequeñas */
+@media (max-width:900px){
+  #reasonsContainer { min-height: 220px; padding:16px; }
+  .reason-card { max-width:720px; min-height:220px; padding:22px; }
+  .reason-text { font-size:1.18rem; }
+}
+@media (max-width:520px){
+  #reasonsContainer { min-height: 160px; padding:12px; }
+  .reason-card { max-width:100%; min-height:160px; padding:16px; border-radius:12px; }
+  .reason-text { font-size:1.05rem; }
+}
+
+/* --- Decoración: Muro de razones más cálido y atractivo --- */
+
+/* fondo del contenedor: suave degradado + textura sutil */
+#reasonsContainer {
+  background: linear-gradient(180deg, rgba(255,246,249,0.6), rgba(255,239,244,0.35));
+  border-radius: 18px;
+  padding: 28px;
+  position: relative;
+  overflow: visible;
+  /* textura ligera de papel */
+  background-image:
+    linear-gradient(135deg, rgba(255,255,255,0.02) 0 2px, transparent 2px 4px),
+    radial-gradient(circle at 10% 20%, rgba(255,77,126,0.02), transparent 10%),
+    radial-gradient(circle at 90% 80%, rgba(255,122,162,0.02), transparent 12%);
+  box-shadow: 0 10px 30px rgba(18,18,18,0.04) inset;
+}
+
+/* flotantes decorativos (corazones suaves) */
+#reasonsContainer::before,
+#reasonsContainer::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(12px);
+  opacity: 0.12;
+}
+#reasonsContainer::before {
+  width: 220px;
+  height: 220px;
+  right: 14%;
+  top: -30px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,77,126,0.18), transparent 25%),
+    radial-gradient(circle at 70% 70%, rgba(255,122,162,0.12), transparent 30%);
+  transform: rotate(12deg);
+}
+#reasonsContainer::after {
+  width: 160px;
+  height: 160px;
+  left: 6%;
+  bottom: -30px;
+  background:
+    radial-gradient(circle at 40% 40%, rgba(255,92,141,0.12), transparent 24%),
+    radial-gradient(circle at 70% 70%, rgba(255,51,102,0.08), transparent 28%);
+  transform: rotate(-8deg);
+}
+
+/* tarjeta: gradiente cálido, borde sutil y marca de agua corazón */
+.reason-card {
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,245,248,0.95));
+  border: 1px solid rgba(255,77,126,0.09);
+  box-shadow: 0 34px 80px rgba(18,18,18,0.06);
+  overflow: hidden;
+}
+
+/* corazón de marca de agua grande */
+.reason-card::before{
+  content: "❤";
+  position: absolute;
+  right: -18%;
+  top: -12%;
+  font-size: 220px;
+  color: rgba(255,77,126,0.06);
+  transform: rotate(-18deg);
+  pointer-events: none;
+  z-index:1;
+}
+
+/* pequeño brillo / destello encima */
+.reason-card::after{
+  content: "";
+  position: absolute;
+  left: -10%;
+  top: -10%;
+  width: 260px;
+  height: 260px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.32), transparent 30%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  z-index:1;
+  pointer-events:none;
+}
+
+/* asegurar que el contenido quede por encima de las decoraciones */
+.reason-card > * { position: relative; z-index: 3; }
+
+/* texto más cálido y legible */
+.reason-text {
+  color: #2a1f24;
+  font-weight: 600;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* colorear botones y acciones para que resalten */
+.reason-actions .icon-btn.small {
+  background: linear-gradient(90deg, rgba(255,77,126,0.12), rgba(255,122,162,0.08));
+  border: 1px solid rgba(255,77,126,0.12);
+  color: #ff2f6f;
+}
+.icon-btn.small.like-btn { background: linear-gradient(90deg,#ff4d7e20,#ff7aa220); color: #ff2f6f; }
+.icon-btn.small.delete-reason { color: #c33; border-color: rgba(200,50,50,0.06); }
+
+/* contador y metadatos más visibles */
+.reason-likes { color: #ff3b76; font-weight:800; font-size:1.02rem; }
+
+/* animación sutil al cambiar razón (fade + slide) */
+@keyframes reasonIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.997); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.reason-card { animation: reasonIn .28s cubic-bezier(.2,.9,.25,1); }
+
+/* responsive: mantener estética en móvil */
+@media (max-width:900px){
+  #reasonsContainer::before, #reasonsContainer::after { display:none; }
+  .reason-card { max-width: 88%; padding: 18px; min-height: 180px; }
+  .reason-text { font-size: 1.18rem; }
+}
+@media (max-width:520px){
+  .reason-card { max-width: 100%; padding: 14px; min-height: 140px; border-radius:12px; }
+  .reason-text { font-size:1.02rem; }
+}
+
 @media (max-width:900px){
   .cards-grid{grid-template-columns:repeat(2,1fr)}
   .reasons-grid{grid-template-columns:repeat(2,1fr)}
